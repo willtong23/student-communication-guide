@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Communication Guide - All Versions</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            color: #2d3748;
+            background: #f8fafc;
+        }
+        
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            max-height: 297mm;
+            margin: 0 auto;
+            background: white;
+            padding: 12mm;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            position: relative;
+            page-break-after: always;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .page:last-child {
+            page-break-after: auto;
+        }
+        
+        @media print {
+            body { background: white; }
+            .page { 
+                box-shadow: none; 
+                margin: 0;
+                width: 100%;
+                min-height: 100vh;
+                max-height: 100vh;
+                padding: 10mm;
+                overflow: hidden;
+            }
+        }
+        
+        /* Teacher Version Styles */
+        .teacher-page {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .teacher-page .header {
+            margin-bottom: 18px;
+            border-bottom: 3px solid #4f46e5;
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .teacher-page .logo {
+            max-width: 55px;
+            max-height: 42px;
+            flex-shrink: 0;
+        }
+        
+        .teacher-page .title-section {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .teacher-page .header h1 {
+            color: #4f46e5;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        
+        .teacher-page .header .subtitle {
+            color: #6b7280;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .teacher-page .main-content {
+            display: grid;
+            gap: 18px;
+            flex: 1;
+        }
+        
+        .teacher-page .section {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 18px;
+            border-left: 5px solid #4f46e5;
+        }
+        
+        .teacher-page .section h2 {
+            color: #1f2937;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .teacher-page .cycle-steps {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .teacher-page .step {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        
+        .teacher-page .step-number {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            line-height: 28px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-right: 12px;
+        }
+        
+        .teacher-page .step-title {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 6px;
+            color: #1f2937;
+        }
+        
+        .teacher-page .step-content {
+            font-size: 14px;
+            color: #4b5563;
+            font-style: italic;
+        }
+        
+        .teacher-page .key-points {
+            background: #f0fdf4;
+            border-left-color: #10b981;
+        }
+        
+        .teacher-page .key-points ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .teacher-page .key-points li {
+            padding: 8px 0;
+            border-bottom: 1px solid #dcfce7;
+            position: relative;
+            padding-left: 25px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .teacher-page .key-points li:last-child {
+            border-bottom: none;
+        }
+        
+        .teacher-page .key-points li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .teacher-page .icon {
+            font-size: 22px;
+        }
+        
+        .teacher-page .footer-note {
+            margin-top: auto;
+            text-align: center;
+            padding: 10px;
+            background: #f9fafb;
+            border-radius: 8px;
+            color: #6b7280;
+            font-style: italic;
+            font-size: 13px;
+        }
+        
+        /* Student Version Styles */
+        .student-page {
+            font-family: 'Comic Neue', cursive;
+            line-height: 1.2;
+            background: white;
+        }
+        
+        .student-page.student-a {
+            background: white;
+        }
+        
+        .student-page.student-b {
+            background: white;
+        }
+        
+        .student-page.combined {
+            background: white;
+        }
+        
+        .student-page .page-content {
+            background: white;
+            border-radius: 0;
+            padding: 0;
+            margin: 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .student-page .header {
+            margin-bottom: 18px;
+            padding: 15px;
+            border-radius: 10px;
+            border: 3px solid;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .student-page.student-a .header {
+            background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+            border-color: #4299e1;
+        }
+        
+        .student-page.student-b .header {
+            background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+            border-color: #48bb78;
+        }
+        
+        .student-page.combined .header {
+            background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+            border-color: #9f7aea;
+            text-align: center;
+            flex-direction: column;
+        }
+        
+        .student-page .logo {
+            max-width: 55px;
+            max-height: 42px;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+        
+        .student-page .header-content {
+            flex: 1;
+        }
+        
+        .student-page .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        
+        .student-page.student-a .header h1 {
+            color: #2b6cb0;
+        }
+        
+        .student-page.student-b .header h1 {
+            color: #2f855a;
+        }
+        
+        .student-page.combined .header h1 {
+            color: #553c9a;
+        }
+        
+        .student-page .header .subtitle {
+            font-size: 16px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+        
+        .student-page .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex: 1;
+        }
+        
+        .student-page .step {
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 2px solid;
+            position: relative;
+        }
+        
+        .student-page.student-a .step {
+            background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+            border-color: #4299e1;
+        }
+        
+        .student-page.student-b .step {
+            background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+            border-color: #48bb78;
+        }
+        
+        .student-page .step-number {
+            position: absolute;
+            top: -12px;
+            left: 18px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            color: white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+        
+        .student-page.student-a .step-number {
+            background: #4299e1;
+        }
+        
+        .student-page.student-b .step-number {
+            background: #48bb78;
+        }
+        
+        .student-page .step-title {
+            font-weight: 700;
+            font-size: 17px;
+            margin-bottom: 10px;
+            margin-top: 8px;
+            text-align: center;
+        }
+        
+        .student-page.student-a .step-title {
+            color: #2b6cb0;
+        }
+        
+        .student-page.student-b .step-title {
+            color: #2f855a;
+        }
+        
+        .student-page .step-content {
+            font-size: 15px;
+            color: #4a5568;
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            line-height: 1.4;
+        }
+        
+        .student-page.student-a .step-content {
+            border-left: 3px solid #4299e1;
+        }
+        
+        .student-page.student-b .step-content {
+            border-left: 3px solid #48bb78;
+        }
+        
+        .student-page .example {
+            background: #fff5f5;
+            border: 2px dashed #fc8181;
+            border-radius: 6px;
+            padding: 10px;
+            margin-top: 10px;
+            font-style: italic;
+            color: #c53030;
+            font-size: 13px;
+        }
+        
+        .student-page .do-dont {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .student-page .do-box {
+            background: #f0fff4;
+            border: 2px solid #48bb78;
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+        }
+        
+        .student-page .dont-box {
+            background: #fef2f2;
+            border: 2px solid #f56565;
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+        }
+        
+        /* Combined Version Styles */
+        .student-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            flex: 1;
+        }
+        
+        .student-column {
+            padding: 20px;
+            border-radius: 15px;
+            border: 3px solid;
+            display: flex;
+            flex-direction: column;
+            background: white;
+        }
+        
+        .student-a-col {
+            border-color: #4299e1;
+        }
+        
+        .student-b-col {
+            border-color: #48bb78;
+        }
+        
+        .column-header {
+            text-align: center;
+            margin-bottom: 18px;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .student-a-col .column-header {
+            background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+        }
+        
+        .student-b-col .column-header {
+            background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+        }
+        
+        .column-avatar {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        
+        .column-title {
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+        
+        .student-a-col .column-title {
+            color: #2b6cb0;
+        }
+        
+        .student-b-col .column-title {
+            color: #2f855a;
+        }
+        
+        .column-subtitle {
+            font-size: 15px;
+            font-weight: 600;
+        }
+        
+        .student-a-col .column-subtitle {
+            color: #4299e1;
+        }
+        
+        .student-b-col .column-subtitle {
+            color: #48bb78;
+        }
+        
+        .column-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex: 1;
+        }
+        
+        .column-step {
+            background: white;
+            border-radius: 10px;
+            padding: 18px;
+            position: relative;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .student-a-col .column-step {
+            border-left: 4px solid #4299e1;
+        }
+        
+        .student-b-col .column-step {
+            border-left: 4px solid #48bb78;
+        }
+        
+        .column-step-number {
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            color: white;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+        }
+        
+        .student-a-col .column-step-number {
+            background: #4299e1;
+        }
+        
+        .student-b-col .column-step-number {
+            background: #48bb78;
+        }
+        
+        .column-step-title {
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 10px;
+            margin-top: 8px;
+            text-align: center;
+        }
+        
+        .student-a-col .column-step-title {
+            color: #2b6cb0;
+        }
+        
+        .student-b-col .column-step-title {
+            color: #2f855a;
+        }
+        
+        .column-step-content {
+            font-size: 13px;
+            color: #4a5568;
+            text-align: center;
+            line-height: 1.5;
+        }
+        
+        .footer-message {
+            text-align: center;
+            margin-top: auto;
+            padding: 18px;
+            background: #f3e8ff;
+            border: 2px solid #9f7aea;
+            border-radius: 12px;
+            color: #553c9a;
+            font-size: 18px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- PAGE 1: TEACHER VERSION -->
+    <div class="page teacher-page">
+        <div class="header">
+            <div style="width: 55px; height: 42px; background: #e5e7eb; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #6b7280; font-size: 12px;">LOGO</div>
+            <div class="title-section">
+                <h1>Student Communication Model</h1>
+                <div class="subtitle">A Simplified NVC Approach - Teacher Reference</div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="section">
+                <h2><span class="icon">🔄</span> 5-Step Communication Cycle</h2>
+                
+                <div class="cycle-steps">
+                    <div class="step step-1" style="border-left-color: #ef4444;">
+                        <div class="step-title">
+                            <span class="step-number" style="background: #ef4444;">1</span>Student A Expresses (Fact + Feeling)
+                        </div>
+                        <div class="step-content">
+                            "When [specific fact], I feel [emotion] because..."
+                        </div>
+                    </div>
+                    
+                    <div class="step step-2" style="border-left-color: #f59e0b;">
+                        <div class="step-title">
+                            <span class="step-number" style="background: #f59e0b;">2</span>Student B Listens (No Arguing)
+                        </div>
+                        <div class="step-content">
+                            No defending or contradicting—just listen.
+                        </div>
+                    </div>
+                    
+                    <div class="step step-3" style="border-left-color: #10b981;">
+                        <div class="step-title">
+                            <span class="step-number" style="background: #10b981;">3</span>Student B Validates the Feeling
+                        </div>
+                        <div class="step-content">
+                            "I understand you feel [emotion] when I [action]. If somebody did that to me, I would feel very bad as well."
+                        </div>
+                    </div>
+                    
+                    <div class="step step-4" style="border-left-color: #3b82f6;">
+                        <div class="step-title">
+                            <span class="step-number" style="background: #3b82f6;">4</span>Student A Acknowledges
+                        </div>
+                        <div class="step-content">
+                            "Thank you for saying that, you make me feel better."
+                        </div>
+                    </div>
+                    
+                    <div class="step step-5" style="border-left-color: #8b5cf6;">
+                        <div class="step-title">
+                            <span class="step-number" style="background: #8b5cf6;">5</span>Student A Makes Request, Student B Responds
+                        </div>
+                        <div class="step-content">
+                            "Next time please [specific action]." → "I will..." or "I will not..."
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section key-points">
+                <h2><span class="icon">🎯</span> Key Points for Teachers</h2>
+                <ul>
+                    <li><strong>Act as moderator</strong> to help students adjust eye contact, sincere tone, and body language for better communication</li>
+                    <li><strong>Stop Student B from arguing</strong> about facts immediately - remind them their role is to listen, not defend or contradict</li>
+                    <li><strong>Role flexibility:</strong> Anyone can start a new cycle if they need to express feelings, and students can reverse roles if both have feelings to share</li>
+                    <li><strong>Focus on validation</strong> before problem-solving</li>
+                    <li><strong>Encourage specific requests</strong> rather than general complaints</li>
+                    <li><strong>Repeat as needed</strong> for full understanding and resolution</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-note">
+            This model encourages mutual empathy, active listening, and fair communication
+        </div>
+    </div>
+    
+    <!-- PAGE 2: COMBINED STUDENT VERSION -->
+    <div class="page student-page combined">
+        <div class="page-content">
+            <div class="header">
+                <div style="width: 55px; height: 42px; background: #e5e7eb; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #6b7280; font-size: 12px;">LOGO</div>
+                <div class="header-content">
+                    <h1>How to Talk to Your Friend</h1>
+                    <div class="subtitle">When You Have a Problem</div>
+                    <div style="font-size: 14px; color: #4a5568; margin-top: 10px; padding-top: 10px; border-top: 2px solid rgba(0,0,0,0.1);">
+                        <strong>🤝 Let's Learn to Talk Nicely!</strong><br>
+                        Sometimes friends have problems. Here's how to fix them by talking nicely to each other.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="student-columns">
+                <div class="student-column student-a-col">
+                    <div class="column-header">
+                        <div class="column-avatar">🙋‍♂️</div>
+                        <div class="column-title">Student A</div>
+                        <div class="column-subtitle">You Share Your Feelings First</div>
+                    </div>
+                    
+                    <div class="column-steps">
+                        <div class="column-step">
+                            <div class="column-step-number">1</div>
+                            <div class="column-step-title">Tell What Happened + How You Feel</div>
+                            <div class="column-step-content">
+                                "When you [what they did], I felt [your feeling] because..."
+                            </div>
+                        </div>
+                        
+                        <div class="column-step">
+                            <div class="column-step-number">2</div>
+                            <div class="column-step-title">Wait and Listen</div>
+                            <div class="column-step-content">
+                                Now your friend will talk. Listen and don't interrupt!
+                            </div>
+                        </div>
+                        
+                        <div class="column-step">
+                            <div class="column-step-number">3</div>
+                            <div class="column-step-title">Say Thank You</div>
+                            <div class="column-step-content">
+                                "Thank you for saying that. That makes me feel better."
+                            </div>
+                        </div>
+                        
+                        <div class="column-step">
+                            <div class="column-step-number">4</div>
+                            <div class="column-step-title">Ask Nicely for Next Time</div>
+                            <div class="column-step-content">
+                                "Next time, please [what you want them to do]"
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="student-column student-b-col">
+                    <div class="column-header">
+                        <div class="column-avatar">🙋‍♀️</div>
+                        <div class="column-title">Student B</div>
+                        <div class="column-subtitle">You Listen and Help Fix the Problem</div>
+                    </div>
+                    
+                    <div class="column-steps">
+                        <div class="column-step">
+                            <div class="column-step-number">1</div>
+                            <div class="column-step-title">Just Listen (Don't Talk Back!)</div>
+                            <div class="column-step-content">
+                                Your friend will tell you how they feel. Listen carefully.
+                            </div>
+                        </div>
+                        
+                        <div class="column-step">
+                            <div class="column-step-number">2</div>
+                            <div class="column-step-title">Say You Understand Their Feelings</div>
+                            <div class="column-step-content">
+                                "I understand you felt [their feeling] when I [what you did]. If someone did that to me, I would feel bad too."
+                            </div>
+                        </div>
+                        
+                        <div class="column-step">
+                            <div class="column-step-number">3</div>
+                            <div class="column-step-title">Wait for Thank You</div>
+                            <div class="column-step-content">
+                                Your friend will thank you for understanding. This shows they feel better!
+                            </div>
+                        </div>
+                        
+                        <div class="column-step">
+                            <div class="column-step-number">4</div>
+                            <div class="column-step-title">Promise to Try</div>
+                            <div class="column-step-content">
+                                "I will try to..." or "Next time I will..."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-message">
+                🤝 Great job learning to talk nicely! 🤝
+            </div>
+        </div>
+    </div>
+    
+    <!-- PAGE 3: STUDENT A VERSION -->
+    <div class="page student-page student-a">
+        <div class="page-content">
+            <div class="header">
+                <div style="width: 55px; height: 42px; background: #e5e7eb; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #6b7280; font-size: 12px;">LOGO</div>
+                <div class="header-content">
+                    <h1>Student A Guide</h1>
+                    <div class="subtitle">You Share Your Feelings First - When a friend does something that makes you feel bad, here's how to tell them nicely.</div>
+                </div>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Tell What Happened + How You Feel</div>
+                    <div class="step-content">
+                        Say: "When you [what they did], I felt [your feeling] because..."
+                        <div class="example">
+                            "When you took my pencil, I felt upset because I was using it."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Wait and Listen</div>
+                    <div class="step-content">
+                        Now your friend will talk. Listen and don't interrupt!
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Say Thank You</div>
+                    <div class="step-content">
+                        "Thank you for saying that. That makes me feel better."
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Ask Nicely for Next Time</div>
+                    <div class="step-content">
+                        Say: "Next time, please [what you want them to do]"
+                        <div class="example">
+                            "Next time, please ask me first."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- PAGE 4: STUDENT B VERSION -->
+    <div class="page student-page student-b">
+        <div class="page-content">
+            <div class="header">
+                <div style="width: 55px; height: 42px; background: #e5e7eb; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #6b7280; font-size: 12px;">LOGO</div>
+                <div class="header-content">
+                    <h1>Student B Guide</h1>
+                    <div class="subtitle">You Listen and Help Fix the Problem - When your friend has a problem with you, here's how to be a good listener and help fix it.</div>
+                </div>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Just Listen (Don't Talk Back!)</div>
+                    <div class="step-content">
+                        Your friend will tell you how they feel. Your job is to listen carefully.
+                        <div class="do-dont">
+                            <div class="do-box">
+                                <strong>✅ DO:</strong><br>
+                                👂 Listen quietly<br>
+                                👀 Look at friend<br>
+                                🤗 Stay calm
+                            </div>
+                            <div class="dont-box">
+                                <strong>❌ DON'T:</strong><br>
+                                🚫 Say "But..."<br>
+                                🚫 Say "Not true!"<br>
+                                🚫 Get angry
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Say You Understand Their Feelings</div>
+                    <div class="step-content">
+                        "I understand you felt [their feeling] when I [what you did]. If someone did that to me, I would feel bad too."
+                        <div class="example">
+                            "I understand you felt upset when I took your pencil. If someone did that to me, I would feel bad too."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Wait for Thank You</div>
+                    <div class="step-content">
+                        Your friend will thank you for understanding. This shows they feel better!
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Promise to Try</div>
+                    <div class="step-content">
+                        When your friend asks you to do something different, say:
+                        "I will try to..." or "Next time I will..."
+                        <div class="example">
+                            "Next time I will ask you first."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
